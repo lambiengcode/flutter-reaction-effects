@@ -11,29 +11,94 @@ and the Flutter guide for
 [developing packages and plugins](https://flutter.dev/developing-packages).
 -->
 
-TODO: Put a short description of the package here that helps potential users
-know whether this package might be useful for them.
+:four_leaf_clover: Package help show popup reaction like Facebook and wrapper for widget (Show anyone who reaction this message).
 
 ## Features
 
-TODO: List what your package can do. Maybe include images, gifs, or videos.
-
-## Getting started
-
-TODO: List prerequisites and provide or point to information on how to
-start using the package.
-
+* Support show popup emotions picker
+* Support reaction wrapper for message card use case
 ## Usage
 
-TODO: Include short and useful examples for package users. Add longer examples
-to `/example` folder.
+- Show reaction popup
 
 ```dart
-const like = 'sample';
+        GestureDetector(
+          onTapDown: (details) {
+            ReactionAskany.showReactionBox(
+              context,
+              offset: details.globalPosition,
+              boxParamenters: boxParamenters,
+              emotionPicked: _emotion,
+              handlePressed: (Emotions emotion) {
+                setState(() {
+                  _emotion = emotion;
+                });
+              },
+            );
+          },
+          child: widget.buttonReaction,
+        ),
+```
+    
+- Use reaction wrapper - useful for reaction message
+    
+```dart
+            ReactionWrapper(
+              boxParamenters: ReactionBoxParamenters(
+                brightness: Brightness.light,
+                iconSize: 26,
+                iconSpacing: 10,
+                paddingHorizontal: 30,
+                radiusBox: 40,
+                quantityPerPage: 6,
+              ),
+              buttonReaction: const Padding(
+                padding: EdgeInsets.only(top: 2.0),
+                child: Icon(
+                  Icons.face_outlined,
+                  size: 20.0,
+                  color: Colors.grey,
+                ),
+              ),
+              child: Container(
+                padding: const EdgeInsets.symmetric(
+                  vertical: 12.0,
+                  horizontal: 20.0,
+                ),
+                decoration: BoxDecoration(
+                  color: Colors.greenAccent.shade100,
+                  borderRadius: BorderRadius.circular(30),
+                ),
+                child: const Text(
+                  'Message from lambiengcode <3',
+                ),
+              ),
+            ),
 ```
 
-## Additional information
+## License - lambiengcode
 
-TODO: Tell users more about the package: where to find more information, how to
-contribute to the package, how to file issues, what response they can expect
-from the package authors, and more.
+```terminal
+MIT License
+
+Copyright (c) 2022 Askany
+
+Permission is hereby granted, free of charge, to any person obtaining a copy
+of this software and associated documentation files (the "Software"), to deal
+in the Software without restriction, including without limitation the rights
+to use, copy, modify, merge, publish, distribute, sublicense, and/or sell
+copies of the Software, and to permit persons to whom the Software is
+furnished to do so, subject to the following conditions:
+
+The above copyright notice and this permission notice shall be included in all
+copies or substantial portions of the Software.
+
+THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING FROM,
+OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS IN THE
+SOFTWARE.
+
+```
