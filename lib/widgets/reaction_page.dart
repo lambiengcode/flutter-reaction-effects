@@ -7,12 +7,14 @@ class ReactionPage extends StatelessWidget {
   final List<Emotions> emotions;
   final Function(Emotions) handlePressed;
   final ReactionBoxParamenters boxParamenters;
+  final Emotions? emotionPicked;
 
   const ReactionPage({
     super.key,
     required this.emotions,
     required this.handlePressed,
     required this.boxParamenters,
+    required this.emotionPicked,
   });
 
   @override
@@ -30,6 +32,7 @@ class ReactionPage extends StatelessWidget {
           emotion: emotions[index],
           handlePressed: handlePressed,
           boxParamenters: boxParamenters,
+          isSelected: emotions[index] == emotionPicked,
         );
       },
     );

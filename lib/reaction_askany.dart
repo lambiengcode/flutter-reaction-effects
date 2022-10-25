@@ -1,6 +1,7 @@
 library reaction_askany;
 
 export 'widgets/reaction_box.dart';
+export 'widgets/reaction_wrapper.dart';
 
 import 'package:flutter/material.dart';
 import 'package:reaction_askany/models/emotions.dart';
@@ -12,6 +13,7 @@ class ReactionAskany {
     BuildContext context, {
     required Offset offset,
     Function(Emotions)? handlePressed,
+    Emotions? emotionPicked,
     ReactionBoxParamenters? boxParamenters,
   }) async {
     final double left = offset.dx;
@@ -22,21 +24,16 @@ class ReactionAskany {
 
     await showMenu(
       context: context,
-      useRootNavigator: true,
-      color: Brightness.light == paramenters.brightness
-          ? Colors.white
-          : Colors.black,
+      color: Colors.transparent,
       position: RelativeRect.fromLTRB(
         left,
         top - paramenters.reactionBoxHeight - paramenters.iconSpacing * 2,
         left,
-        top,
+        top - paramenters.iconSpacing * 3,
       ),
       shape: RoundedRectangleBorder(
-        borderRadius: BorderRadius.all(
-          Radius.circular(
-            paramenters.radiusBox,
-          ),
+        borderRadius: BorderRadius.circular(
+          paramenters.radiusBox,
         ),
       ),
       constraints: BoxConstraints(
@@ -44,27 +41,39 @@ class ReactionAskany {
       ),
       items: [
         PopupMenuItem(
-          height: paramenters.reactionBoxHeight,
           padding: EdgeInsets.zero,
-          enabled: true,
+          enabled: false,
           onTap: () {},
           child: Container(
             decoration: BoxDecoration(
+              border: Border.all(
+                color: Brightness.light == paramenters.brightness
+                    ? Colors.grey.shade300
+                    : Colors.grey.shade800,
+                width: .2,
+              ),
+              color: Brightness.light == paramenters.brightness
+                  ? Colors.white
+                  : Colors.black,
               borderRadius: BorderRadius.circular(
                 paramenters.radiusBox,
               ),
             ),
             height: paramenters.reactionBoxHeight,
             width: paramenters.reactionBoxWidth,
+            padding: const EdgeInsets.symmetric(
+              vertical: 4.0,
+            ),
             child: ReactionBox(
               emotions: Emotions.values,
               handlePressed: handlePressed ?? (Emotions emo) {},
               boxParamenters: paramenters,
+              emotionPicked: emotionPicked,
             ),
           ),
         ),
       ],
-      elevation: .35,
+      elevation: 0,
     );
   }
 }

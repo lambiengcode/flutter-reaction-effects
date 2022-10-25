@@ -7,11 +7,13 @@ class ReactionBox extends StatefulWidget {
   final List<Emotions> emotions;
   final Function(Emotions) handlePressed;
   final ReactionBoxParamenters boxParamenters;
+  final Emotions? emotionPicked;
   const ReactionBox({
     super.key,
     required this.emotions,
     required this.handlePressed,
     required this.boxParamenters,
+    required this.emotionPicked,
   });
 
   @override
@@ -75,6 +77,7 @@ class _ReactionBoxState extends State<ReactionBox> {
                     emotions: page,
                     handlePressed: widget.handlePressed,
                     boxParamenters: widget.boxParamenters,
+                    emotionPicked: widget.emotionPicked,
                   ),
                 )
                 .toList(),
@@ -97,7 +100,7 @@ class _ReactionBoxState extends State<ReactionBox> {
                   height: isCurrent ? 6 : 4,
                   width: isCurrent ? 6 : 4,
                   decoration: BoxDecoration(
-                    color: Colors.grey.shade200,
+                    color: isCurrent ? Colors.grey : Colors.grey.shade400,
                     shape: BoxShape.circle,
                   ),
                 );

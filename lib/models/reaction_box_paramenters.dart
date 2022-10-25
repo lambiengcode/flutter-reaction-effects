@@ -71,7 +71,7 @@ class ReactionBoxParamenters {
       iconSize.hashCode ^ iconSpacing.hashCode ^ paddingHorizontal.hashCode;
 
   // Calculator
-  double get reactionBoxHeight => iconSize + iconSpacing * 2 + 12;
+  double get reactionBoxHeight => iconSize + iconSpacing * 2 + 20.0;
 
   double get reactionBoxWidth =>
       (iconSize + iconSpacing * 2) * quantityPerPage + paddingHorizontal * 2;

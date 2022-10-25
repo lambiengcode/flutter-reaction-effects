@@ -1,7 +1,8 @@
 name: reaction_askany
 description: A new Flutter package project.
 version: 0.0.1
-homepage:
+homepage: https://github.com/Askany-NDN/reaction_button_askany.git
+repository: https://github.com/Askany-NDN/reaction_button_askany.git
 
 environment:
   sdk: ">=2.18.2 <3.0.0"
