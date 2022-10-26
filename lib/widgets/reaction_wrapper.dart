@@ -115,6 +115,15 @@ class _ReactionWrapperState extends State<ReactionWrapper>
                 emotionPicked: _emotion,
                 handlePressed: (Emotions emotion) {
                   _controller.reset();
+
+                  if (emotion == _emotion) {
+                    setState(() {
+                      _emotion = null;
+                    });
+
+                    return;
+                  }
+
                   setState(() {
                     _emotion = emotion;
                     _beginOffset = const Offset(.25, -1);
