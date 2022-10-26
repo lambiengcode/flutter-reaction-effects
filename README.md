@@ -23,8 +23,8 @@ and the Flutter guide for
 
 * Support show popup emotions picker
 * Support reaction wrapper for message card use case
-## Usage
 
+## Usage
 - Show reaction popup
 
 ```dart
@@ -82,6 +82,15 @@ and the Flutter guide for
             ),
 ```
 
+### ReactionBoxParamenters
+| parameter                  | description                                                                           | default                                                                                                                                                                               |
+| -------------------------- | ------------------------------------------------------------------------------------- | ------------------------------------------------------------------------------------------------------------------------------------------------------------------------------------- |
+| iconSize          | Size of emotion in reaction box                                           |20|
+| iconSpacing                  | Padding horizontal value for each emotion |8|
+| paddingHorizontal            | Padding horizontal value for reaction box                                                        | 16 |
+| radiusBox               | Radius circular of reaction box                             | 10 |
+| quantityPerPage      | Number of emotions per page view                           | 5 |
+| brightness                  | Set brightness for show background color compatitive                                  | Brightness.light
 ## Download Askany
 
 <p>

@@ -1,6 +1,5 @@
 library reaction_askany;
 
-export 'widgets/reaction_box.dart';
 export 'widgets/reaction_wrapper.dart';
 
 import 'package:flutter/material.dart';
