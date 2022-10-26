@@ -80,6 +80,13 @@ and the Flutter guide for
             ),
 ```
 
+## Download Askany
+
+<p>
+<a href="https://apps.apple.com/vn/app/askany/id1589217505"><img src="https://askany.com/images/app-store.png" height="60px" width="180px"/></a>
+<a href="https://play.google.com/store/apps/details?id=com.askany"><img src="https://askany.com/images/ch-play.png" height="60px" width="180px"/></a>
+</p>
+
 ## License - lambiengcode
 
 ```terminal

@@ -8,6 +8,7 @@ class ReactionWrapper extends StatefulWidget {
   final Widget child;
   final Widget buttonReaction;
   final Function(Emotions)? handlePressed;
+  final Function()? handlePressedReactions;
   final ReactionBoxParamenters? boxParamenters;
   final Emotions? initialEmotion;
 
@@ -17,6 +18,7 @@ class ReactionWrapper extends StatefulWidget {
     required this.buttonReaction,
     this.boxParamenters,
     this.handlePressed,
+    this.handlePressedReactions,
     this.initialEmotion,
   });
 
@@ -37,62 +39,65 @@ class _ReactionWrapperState extends State<ReactionWrapper> {
 
   @override
   Widget build(BuildContext context) {
-    return Row(
-      crossAxisAlignment: CrossAxisAlignment.start,
-      mainAxisAlignment: MainAxisAlignment.start,
-      mainAxisSize: MainAxisSize.min,
-      children: [
-        Stack(
-          clipBehavior: Clip.none,
-          children: [
-            widget.child,
-            Visibility(
-              visible: _emotion != null,
-              child: Positioned(
-                bottom: -10,
-                child: GestureDetector(
-                  onTap: () {},
-                  child: Container(
-                    padding: const EdgeInsets.all(3.0),
-                    margin: const EdgeInsets.only(
-                      left: 24.0,
-                    ),
-                    decoration: BoxDecoration(
-                      color: Brightness.light == boxParamenters.brightness
-                          ? Colors.grey.shade100
-                          : Colors.grey.shade800,
-                      borderRadius: BorderRadius.circular(30.0),
-                    ),
-                    alignment: Alignment.center,
-                    child: Image.asset(
-                      _emotion?.assetImage ?? '',
-                      height: 16,
-                      width: 16,
+    return Padding(
+      padding: EdgeInsets.only(bottom: _emotion != null ? 12.0 : 0),
+      child: Row(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        mainAxisAlignment: MainAxisAlignment.start,
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Stack(
+            clipBehavior: Clip.none,
+            children: [
+              widget.child,
+              Visibility(
+                visible: _emotion != null,
+                child: Positioned(
+                  bottom: -11,
+                  child: GestureDetector(
+                    onTap: widget.handlePressedReactions,
+                    child: Container(
+                      padding: const EdgeInsets.all(3.0),
+                      margin: const EdgeInsets.only(
+                        left: 20.0,
+                      ),
+                      decoration: BoxDecoration(
+                        color: Brightness.light == boxParamenters.brightness
+                            ? Colors.grey.shade100
+                            : Colors.grey.shade800,
+                        borderRadius: BorderRadius.circular(30.0),
+                      ),
+                      alignment: Alignment.center,
+                      child: Image.asset(
+                        _emotion?.assetImage ?? '',
+                        height: 16,
+                        width: 16,
+                      ),
                     ),
                   ),
                 ),
-              ),
-            )
-          ],
-        ),
-        const SizedBox(width: 4.0),
-        GestureDetector(
-          onTapDown: (details) {
-            ReactionAskany.showReactionBox(
-              context,
-              offset: details.globalPosition,
-              boxParamenters: boxParamenters,
-              emotionPicked: _emotion,
-              handlePressed: (Emotions emotion) {
-                setState(() {
-                  _emotion = emotion;
-                });
-              },
-            );
-          },
-          child: widget.buttonReaction,
-        ),
-      ],
+              )
+            ],
+          ),
+          const SizedBox(width: 4.0),
+          GestureDetector(
+            onTapDown: (details) {
+              ReactionAskany.showReactionBox(
+                context,
+                offset: details.globalPosition,
+                boxParamenters: boxParamenters,
+                emotionPicked: _emotion,
+                handlePressed: (Emotions emotion) {
+                  setState(() {
+                    _emotion = emotion;
+                  });
+                },
+              );
+            },
+            child: widget.buttonReaction,
+          ),
+        ],
+      ),
     );
   }
 }
