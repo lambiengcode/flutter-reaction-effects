@@ -15,8 +15,8 @@ and the Flutter guide for
 
 ## :four_leaf_clover::four_leaf_clover: Preview
 <p>
-<img src="https://github.com/Askany-NDN/reaction_button_askany/blob/main/screenshots/IMG_0465.png" width=200/>
-<img src="https://github.com/Askany-NDN/reaction_button_askany/blob/main/screenshots/IMG_0467.png" width=200/>
+<img src="https://github.com/Askany-NDN/reaction_button_askany/blob/main/screenshots/IMG_0465.png?raw=true" width=200/>
+<img src="https://github.com/Askany-NDN/reaction_button_askany/blob/main/screenshots/IMG_0467.png?raw=true" width=200/>
 </p>
 
 ## Features
