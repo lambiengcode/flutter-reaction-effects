@@ -42,10 +42,6 @@ class _ReactionWrapperState extends State<ReactionWrapper>
       vsync: this,
     );
     _emotion = widget.initialEmotion;
-
-    if (_emotion != null) {
-      _controller.forward();
-    }
   }
 
   @override
@@ -75,7 +71,7 @@ class _ReactionWrapperState extends State<ReactionWrapper>
                     onTap: widget.handlePressedReactions,
                     child: SlideTransition(
                       position: Tween<Offset>(
-                        begin: _beginOffset ?? const Offset(0.5, -1),
+                        begin: _beginOffset ?? Offset.zero,
                         end: Offset.zero,
                       ).animate(CurvedAnimation(
                         parent: _controller,
