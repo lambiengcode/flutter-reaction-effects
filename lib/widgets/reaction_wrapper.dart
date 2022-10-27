@@ -7,7 +7,7 @@ import '../reaction_askany.dart';
 class ReactionWrapper extends StatefulWidget {
   final Widget child;
   final Widget buttonReaction;
-  final Function(Emotions)? handlePressed;
+  final Function(Emotions?)? handlePressed;
   final Function()? handlePressedReactions;
   final ReactionBoxParamenters? boxParamenters;
   final Emotions? initialEmotion;
@@ -130,6 +130,10 @@ class _ReactionWrapperState extends State<ReactionWrapper>
                   });
 
                   _controller.forward();
+
+                  if (widget.handlePressed != null) {
+                    widget.handlePressed!(_emotion);
+                  }
                 },
               );
             },
