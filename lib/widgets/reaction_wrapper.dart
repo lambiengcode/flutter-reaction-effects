@@ -42,6 +42,10 @@ class _ReactionWrapperState extends State<ReactionWrapper>
       vsync: this,
     );
     _emotion = widget.initialEmotion;
+
+    if (_emotion != null) {
+      _controller.forward();
+    }
   }
 
   @override
