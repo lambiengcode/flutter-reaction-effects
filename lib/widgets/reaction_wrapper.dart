@@ -121,6 +121,10 @@ class _ReactionWrapperState extends State<ReactionWrapper>
                       _emotion = null;
                     });
 
+                    if (widget.handlePressed != null) {
+                      widget.handlePressed!(_emotion);
+                    }
+
                     return;
                   }
 
