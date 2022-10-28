@@ -1,3 +1,9 @@
+## 0.0.3
+
+* Fix not excute handlePressed in ReactionWrapper
+* Add animation when choose emotion
+* Choose current emotion will remove reaction
+
 ## 0.0.2
 
 * Allow pressed emotion for view who react this message
