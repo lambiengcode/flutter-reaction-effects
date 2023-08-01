@@ -28,6 +28,7 @@ class ReactionWrapper extends StatefulWidget {
 
 class _ReactionWrapperState extends State<ReactionWrapper>
     with TickerProviderStateMixin {
+  final GlobalKey _widgetKey = GlobalKey();
   late AnimationController _controller;
   Offset? _beginOffset;
   late final ReactionBoxParamenters boxParamenters =
@@ -103,14 +104,28 @@ class _ReactionWrapperState extends State<ReactionWrapper>
           ),
           const SizedBox(width: 4.0),
           GestureDetector(
-            onTapDown: (details) {
+            key: _widgetKey,
+            onTapDown: (details) async {
               setState(() {
                 _beginOffset = Offset.zero;
               });
 
+              if (FocusScope.of(context).hasFocus) {
+                FocusScope.of(context).unfocus();
+                await Future.delayed(const Duration(milliseconds: 300));
+              }
+
+              RenderBox? renderBox =
+                  _widgetKey.currentContext?.findRenderObject() as RenderBox?;
+
+              if (renderBox == null) return;
+
+              Offset globalOffset = renderBox.localToGlobal(Offset.zero);
+
+              // ignore: use_build_context_synchronously
               ReactionAskany.showReactionBox(
                 context,
-                offset: details.globalPosition,
+                offset: globalOffset,
                 boxParamenters: boxParamenters,
                 emotionPicked: _emotion,
                 handlePressed: (Emotions emotion) {
