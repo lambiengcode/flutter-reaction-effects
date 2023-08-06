@@ -58,16 +58,29 @@ class ReactionAskany {
                 paramenters.radiusBox,
               ),
             ),
-            height: paramenters.reactionBoxHeight,
+            height: paramenters.reactionBoxHeight + 4.0,
             width: paramenters.reactionBoxWidth,
             padding: const EdgeInsets.symmetric(
               vertical: 4.0,
             ),
-            child: ReactionBox(
-              emotions: Emotions.values,
-              handlePressed: handlePressed ?? (Emotions emo) {},
-              boxParamenters: paramenters,
-              emotionPicked: emotionPicked,
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.spaceBetween,
+              children: [
+                const Text(
+                  'Add a reaction by double-tapping any message',
+                  textAlign: TextAlign.center,
+                  style: TextStyle(
+                    fontSize: 10.0,
+                  ),
+                ),
+                ReactionBox(
+                  emotions: Emotions.values,
+                  handlePressed: handlePressed ?? (Emotions emo) {},
+                  boxParamenters: paramenters,
+                  emotionPicked: emotionPicked,
+                ),
+              ],
             ),
           ),
         ),
