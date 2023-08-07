@@ -28,7 +28,8 @@ class ReactionWrapper extends StatefulWidget {
 
 class _ReactionWrapperState extends State<ReactionWrapper>
     with TickerProviderStateMixin {
-  final GlobalKey _widgetKey = GlobalKey();
+  final GlobalKey _reactionButtonKey = GlobalKey();
+  final GlobalKey _messageWidgetKey = GlobalKey();
   late AnimationController _controller;
   Offset? _beginOffset;
   late final ReactionBoxParamenters boxParamenters =
@@ -63,7 +64,13 @@ class _ReactionWrapperState extends State<ReactionWrapper>
           Stack(
             clipBehavior: Clip.none,
             children: [
-              widget.child,
+              GestureDetector(
+                key: _messageWidgetKey,
+                onDoubleTap: () async {
+                  await _openReactionMenu(_messageWidgetKey);
+                },
+                child: widget.child,
+              ),
               Visibility(
                 visible: _emotion != null,
                 child: Positioned(
@@ -103,63 +110,70 @@ class _ReactionWrapperState extends State<ReactionWrapper>
             ],
           ),
           const SizedBox(width: 4.0),
-          GestureDetector(
-            key: _widgetKey,
-            onTapDown: (details) async {
-              setState(() {
-                _beginOffset = Offset.zero;
-              });
-
-              if (FocusScope.of(context).hasFocus) {
-                FocusScope.of(context).unfocus();
-                await Future.delayed(const Duration(milliseconds: 300));
-              }
-
-              RenderBox? renderBox =
-                  _widgetKey.currentContext?.findRenderObject() as RenderBox?;
-
-              if (renderBox == null) return;
-
-              Offset globalOffset = renderBox.localToGlobal(Offset.zero);
-
-              // ignore: use_build_context_synchronously
-              ReactionAskany.showReactionBox(
-                context,
-                offset: globalOffset,
-                boxParamenters: boxParamenters,
-                emotionPicked: _emotion,
-                handlePressed: (Emotions emotion) {
-                  _controller.reset();
-
-                  if (emotion == _emotion) {
-                    setState(() {
-                      _emotion = null;
-                    });
-
-                    if (widget.handlePressed != null) {
-                      widget.handlePressed!(_emotion);
-                    }
-
-                    return;
-                  }
-
-                  setState(() {
-                    _emotion = emotion;
-                    _beginOffset = const Offset(.25, -1);
-                  });
-
-                  _controller.forward();
-
-                  if (widget.handlePressed != null) {
-                    widget.handlePressed!(_emotion);
-                  }
-                },
-              );
-            },
-            child: widget.buttonReaction,
+          Visibility(
+            visible: _emotion == null,
+            child: GestureDetector(
+              key: _reactionButtonKey,
+              onTapDown: (details) async {
+                await _openReactionMenu(_reactionButtonKey);
+              },
+              child: widget.buttonReaction,
+            ),
           ),
         ],
       ),
+    );
+  }
+
+  Future<void> _openReactionMenu(GlobalKey widgetKey) async {
+    setState(() {
+      _beginOffset = Offset.zero;
+    });
+
+    if (FocusScope.of(context).hasFocus) {
+      FocusScope.of(context).unfocus();
+      await Future.delayed(const Duration(milliseconds: 300));
+    }
+
+    RenderBox? renderBox =
+        widgetKey.currentContext?.findRenderObject() as RenderBox?;
+
+    if (renderBox == null) return;
+
+    Offset globalOffset = renderBox.localToGlobal(Offset.zero);
+
+    // ignore: use_build_context_synchronously
+    ReactionAskany.showReactionBox(
+      context,
+      offset: globalOffset,
+      boxParamenters: boxParamenters,
+      emotionPicked: _emotion,
+      handlePressed: (Emotions emotion) {
+        _controller.reset();
+
+        if (emotion == _emotion) {
+          setState(() {
+            _emotion = null;
+          });
+
+          if (widget.handlePressed != null) {
+            widget.handlePressed!(_emotion);
+          }
+
+          return;
+        }
+
+        setState(() {
+          _emotion = emotion;
+          _beginOffset = const Offset(.25, -1);
+        });
+
+        _controller.forward();
+
+        if (widget.handlePressed != null) {
+          widget.handlePressed!(_emotion);
+        }
+      },
     );
   }
 }

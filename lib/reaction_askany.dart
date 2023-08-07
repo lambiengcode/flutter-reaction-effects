@@ -26,7 +26,7 @@ class ReactionAskany {
       color: Colors.transparent,
       position: RelativeRect.fromLTRB(
         left,
-        top - paramenters.reactionBoxHeight - paramenters.iconSpacing * 2,
+        top - paramenters.reactionBoxHeight - paramenters.iconSpacing * 2.5,
         left,
         top - paramenters.iconSpacing * 3,
       ),
@@ -53,12 +53,12 @@ class ReactionAskany {
               ),
               color: Brightness.light == paramenters.brightness
                   ? Colors.white
-                  : Colors.black,
+                  : const Color(0xFF22222A),
               borderRadius: BorderRadius.circular(
                 paramenters.radiusBox,
               ),
             ),
-            height: paramenters.reactionBoxHeight + 4.0,
+            height: paramenters.reactionBoxHeight + 10.0,
             width: paramenters.reactionBoxWidth,
             padding: const EdgeInsets.symmetric(
               vertical: 4.0,
@@ -67,11 +67,14 @@ class ReactionAskany {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Text(
-                  'Add a reaction by double-tapping any message',
-                  textAlign: TextAlign.center,
-                  style: TextStyle(
-                    fontSize: 10.0,
+                const Padding(
+                  padding: EdgeInsets.symmetric(vertical: 3.0),
+                  child: Text(
+                    'Add a reaction by double-tapping any message',
+                    textAlign: TextAlign.center,
+                    style: TextStyle(
+                      fontSize: 9.5,
+                    ),
                   ),
                 ),
                 ReactionBox(

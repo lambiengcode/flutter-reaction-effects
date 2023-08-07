@@ -28,7 +28,7 @@ class _EmotionWidgetState extends State<EmotionWidget>
   void initState() {
     super.initState();
     _controller = AnimationController(
-      duration: const Duration(seconds: 1),
+      duration: const Duration(milliseconds: 1500),
       vsync: this,
     );
     if (widget.isSelected) {
@@ -50,14 +50,20 @@ class _EmotionWidgetState extends State<EmotionWidget>
         Navigator.pop(context);
       },
       child: widget.isSelected
-          ? ScaleTransition(
-              scale: Tween(begin: 1.0, end: 1.2).animate(
-                CurvedAnimation(
-                  curve: Curves.easeInOut,
-                  parent: _controller,
-                ),
+          ? Container(
+              decoration: BoxDecoration(
+                color: Colors.grey.shade800,
+                borderRadius: BorderRadius.circular(8.0),
               ),
-              child: _buildBody(),
+              child: ScaleTransition(
+                scale: Tween(begin: 1.0, end: 1.1).animate(
+                  CurvedAnimation(
+                    curve: Curves.easeInOut,
+                    parent: _controller,
+                  ),
+                ),
+                child: _buildBody(),
+              ),
             )
           : _buildBody(),
     );
