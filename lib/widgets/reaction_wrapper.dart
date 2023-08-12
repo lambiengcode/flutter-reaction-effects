@@ -11,6 +11,7 @@ class ReactionWrapper extends StatefulWidget {
   final Function()? handlePressedReactions;
   final ReactionBoxParamenters? boxParamenters;
   final Emotions? initialEmotion;
+  final String? doubleTapLabel;
 
   const ReactionWrapper({
     super.key,
@@ -20,6 +21,7 @@ class ReactionWrapper extends StatefulWidget {
     this.handlePressed,
     this.handlePressedReactions,
     this.initialEmotion,
+    this.doubleTapLabel,
   });
 
   @override
@@ -148,6 +150,7 @@ class _ReactionWrapperState extends State<ReactionWrapper>
       offset: globalOffset,
       boxParamenters: boxParamenters,
       emotionPicked: _emotion,
+      doubleTapLabel: widget.doubleTapLabel,
       handlePressed: (Emotions emotion) {
         _controller.reset();
 

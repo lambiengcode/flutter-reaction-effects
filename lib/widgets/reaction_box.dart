@@ -8,6 +8,7 @@ class ReactionBox extends StatefulWidget {
   final Function(Emotions) handlePressed;
   final ReactionBoxParamenters boxParamenters;
   final Emotions? emotionPicked;
+
   const ReactionBox({
     super.key,
     required this.emotions,

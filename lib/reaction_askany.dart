@@ -14,6 +14,7 @@ class ReactionAskany {
     Function(Emotions)? handlePressed,
     Emotions? emotionPicked,
     ReactionBoxParamenters? boxParamenters,
+    String? doubleTapLabel,
   }) async {
     final double left = offset.dx;
     final double top = offset.dy;
@@ -67,13 +68,16 @@ class ReactionAskany {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                const Padding(
-                  padding: EdgeInsets.symmetric(vertical: 3.0),
-                  child: Text(
-                    'Add a reaction by double-tapping any message',
-                    textAlign: TextAlign.center,
-                    style: TextStyle(
-                      fontSize: 9.5,
+                Visibility(
+                  visible: doubleTapLabel != null,
+                  child: Padding(
+                    padding: const EdgeInsets.symmetric(vertical: 3.0),
+                    child: Text(
+                      doubleTapLabel!,
+                      textAlign: TextAlign.center,
+                      style: const TextStyle(
+                        fontSize: 9.5,
+                      ),
                     ),
                   ),
                 ),

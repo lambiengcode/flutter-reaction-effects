@@ -1,3 +1,8 @@
+## 0.1.2
+
+* [Fix] position showMenu reaction
+* Add double tap message for open reaction menu
+
 ## 0.1.0
 
 * Update homepage and repository
