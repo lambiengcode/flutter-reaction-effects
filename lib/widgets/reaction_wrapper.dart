@@ -12,6 +12,7 @@ class ReactionWrapper extends StatefulWidget {
   final ReactionBoxParamenters? boxParamenters;
   final Emotions? initialEmotion;
   final String? doubleTapLabel;
+  final bool allowDoubleTap;
 
   const ReactionWrapper({
     super.key,
@@ -22,6 +23,7 @@ class ReactionWrapper extends StatefulWidget {
     this.handlePressedReactions,
     this.initialEmotion,
     this.doubleTapLabel,
+    this.allowDoubleTap = true,
   });
 
   @override
@@ -69,6 +71,8 @@ class _ReactionWrapperState extends State<ReactionWrapper>
               GestureDetector(
                 key: _messageWidgetKey,
                 onDoubleTap: () async {
+                  if (!widget.allowDoubleTap) return;
+
                   await _openReactionMenu(_messageWidgetKey);
                 },
                 child: widget.child,
